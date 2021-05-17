@@ -19,6 +19,7 @@ export const initiateGetJobs = (data) => {
       const jobs = await axios.get(
         `${BASE_API_URL}/jobs?description=${jobValue}&location=${locaValue}${page}`
       );
+
       // const jobs = await axios.get('./jobs.json');
       const sortedJobs = jobs.data.sort(
         (a, b) =>

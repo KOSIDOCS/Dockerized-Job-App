@@ -3,13 +3,12 @@ import styled from "styled-components";
 import Loader from "react-loader-spinner";
 import Job from "./JobCard";
 import theme from "../screenquery/theme";
-// import Jobs from "../../jobs.json";
 import JobsContext from "../../context/jobs";
 import device from "../screenquery/mediaquery";
 import _ from "lodash";
 
 const JobLayout = () => {
-  const { results, onResetPage } = useContext(JobsContext);
+  const { results, onResetPage, isLoading } = useContext(JobsContext);
 
   useEffect(() => {
     onResetPage();
@@ -55,7 +54,7 @@ const JobLayout = () => {
 
   return (
     <Wrapper>
-      {_.isEmpty(results) ? (
+      {_.isEmpty(results) && isLoading === true ? (
         <CustomLoader />
       ) : (
         results.map((job, index) => (

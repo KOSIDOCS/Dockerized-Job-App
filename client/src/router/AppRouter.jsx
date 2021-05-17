@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, } from "react-redux";
 import Header from "../components/Header/Header";
 import JobLists from "../components/JobList/JobLists";
 import JobDetails from "../components/JobList/JobDetails";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { initiateGetJobs } from "../actions/jobs";
 import { resetErrors } from "../actions/errors";
 
 import JobsContext from "../context/jobs";
-import Jobs from "../jobs.json";
 
 const AppRouter = () => {
   const [results, setResults] = useState([]);
@@ -18,25 +17,21 @@ const AppRouter = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [jobId, setJobId] = useState(-1);
   const [selection, setSelection] = useState(null);
-  const [sortOrder, setSortOrder] = useState("New");
   const [page, setPage] = useState("");
+  const jobs = useSelector(state => state.jobs);
 
   useEffect(() => {
-    setResults(Jobs);
-  }, []);
+    setResults(jobs);
+    setIsLoading(false);
+  }, [jobs]);
 
   const loadJobs = (selection) => {
     const { jobValue, locaValue, page = 1 } = selection;
+    console.log(selection);
 
     dispatch(resetErrors());
     setIsLoading(true);
-    dispatch(initiateGetJobs({ jobValue, locaValue, page }))
-      .then((response) => {
-        if (response && response.jobs.length === 0) {
-          setIsLoading(false);
-        }
-      })
-      .catch(() => setIsLoading(false));
+    dispatch(initiateGetJobs({ jobValue, locaValue, page }));
   };
 
   const handleResetPage = () => {
@@ -44,6 +39,7 @@ const AppRouter = () => {
   };
 
   const handleSearch = (selection) => {
+    setResults([]);
     loadJobs(selection);
     setSelection(selection);
   };
@@ -62,6 +58,7 @@ const AppRouter = () => {
   const value = {
     results,
     page,
+    isLoading,
     details: jobDetails,
     onSearch: handleSearch,
     onItemClick: handleItemClick,

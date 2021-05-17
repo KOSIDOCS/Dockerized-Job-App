@@ -1,4 +1,4 @@
-export const BASE_API_URL = "";
+export const BASE_API_URL = "http://localhost:5000";
 
 export const findLink = (html, company_url) => {
   let links = html.match(
