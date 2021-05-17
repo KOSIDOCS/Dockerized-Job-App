@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    # env_file:
+    #     "./backend/backend.env"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: "job/expecter-backend"
+    ports:
+      - "5000:5000"
+  frontend:
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    image: "job/expecter-frontend"
+    ports:
+      - "3000:3000"
+    links:
+      - "backend:be"
+
+# version: "3.8"
+# services: 
+#     backend:
+#         build: .
+#         ports: 
+#             - "3000:3000"
+#         volumes: 
+#             - ./src:/app/src:ro
+        # environment: 
+        #     - REACT_APP_NAME=jobapp
+        #     - NUMBER_PORT=job
+        # env_file: 
+        #     - ./.env            
