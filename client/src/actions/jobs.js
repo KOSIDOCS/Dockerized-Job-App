@@ -3,6 +3,7 @@ import moment from "moment";
 import { BASE_API_URL } from "../utils/constants";
 import { setErrors } from "./errors";
 
+// async redux actions to get search jobs from api.
 export const initiateGetJobs = (data) => {
   return async (dispatch) => {
     try {
