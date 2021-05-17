@@ -1,12 +1,10 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import styled from "styled-components";
 import theme from "../screenquery/theme";
-import { darken } from "polished";
 import { AlertBtn } from "../styledelement/StyledComponents";
 import { MapPin } from "react-feather";
 import moment from "moment";
 import JobsContext from "../../context/jobs";
-import { findLink } from "../../utils/constants";
 import { useHistory } from "react-router-dom"
 
 const Job = ({
@@ -63,7 +61,6 @@ const Job = ({
 };
 
 const Wrapper = styled.div`
-  /* width: 680px; */
   width: 100%;
   background: ${theme.light};
   display: flex;
@@ -88,33 +85,9 @@ const TopWrap = styled.div`
   flex-wrap: wrap;
 `;
 
-const ViewBtn = styled(AlertBtn)`
-  margin-left: 10px;
-  background: ${darken(0.16, theme.contentBg)};
-  border-color: ${darken(0.16, theme.contentBg)};
-  cursor: pointer;
-  color: ${theme.textDark};
-`;
-
 const DescrptWrap = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const SaveBtn = styled.span`
-  color: ${theme.btnMain};
-  cursor: pointer;
-
-  &:link,
-  &:visited {
-    color: ${theme.btnMain};
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: ${theme.textLight};
-  }
 `;
 
 const Heading = styled.h4`

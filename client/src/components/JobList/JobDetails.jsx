@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import theme from "../screenquery/theme";
-import { darken } from "polished";
 import { ChevronLeft, MapPin } from "react-feather";
 import { AlertBtn, SearchBtn } from "../styledelement/StyledComponents";
 import JobsContext from "../../context/jobs";
@@ -26,13 +25,9 @@ const JobDetails = () => {
     location,
     company,
     company_url,
-    company_logo,
     how_to_apply,
     created_at,
     redirect_url,
-    created,
-    contract_type,
-    salary_min,
   } = details;
 
   const jobLocation = (location) => {
@@ -44,18 +39,6 @@ const JobDetails = () => {
       job = location;
     }
     return job;
-  };
-
-  const jobType = (type, contract) => {
-    let jobtype = "Not available";
-    if (!_.isEmpty(type)) {
-      jobtype = type;
-    }
-
-    if (!_.isEmpty(contract)) {
-      jobtype = contract;
-    }
-    return jobtype;
   };
     
     const handleResetPage = () => {
