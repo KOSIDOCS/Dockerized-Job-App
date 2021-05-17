@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { JobInput } from "../styledelement/StyledComponents";
-import { Search, X } from "react-feather";
+import { X } from "react-feather";
 import theme from "../screenquery/theme";
 
 const JobSearch = ({
@@ -47,12 +47,6 @@ const CloseBtn = styled(X)`
   position: absolute;
   top: 11px;
   left: 255px;
-`;
-
-const SearchIcon = styled(Search)`
-  margin-right: 14px;
-  position: relative;
-  top: 11px;
 `;
 
 export default JobSearch;

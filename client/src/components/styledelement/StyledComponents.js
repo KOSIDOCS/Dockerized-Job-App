@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { darken } from "polished";
 import theme from "../screenquery/theme";
-import device from "../screenquery/mediaquery";
 
 /**Begining of Jobsearch input */
 export const JobInput = styled.input`
